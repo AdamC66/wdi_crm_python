@@ -10,22 +10,17 @@ class Contact:
     Contact.next_id += 1
   
   def __str__(self):
-    return ("First Name: {}, Last Name: {}, Email: {}, Note: {}".format(self.first_name.capitalize(), self.last_name.capitalize(), self.email, self.note))
+    return ("ID: {}, First Name: {}, Last Name: {}, Email: {}, Note: {}".format(self.id, self.first_name.capitalize(), self.last_name.capitalize(), self.email, self.note))
 
   def __repr__(self):
     return self.__str__()
 
   @classmethod
-  def create(cls):
+  def create(cls, first_name, last_name, email,note):
     """This method should call the initializer,
     store the newly created contact, and then return it
     """
-    first_name = input("Please enter contact's first name ").lower()
-    last_name = input("Please enter contact's last name ").lower()
-    email = input("Please enter contact's email address ").lower()
-    note = input("Please enter a note for the contact, if desired ")
-    if note == None:
-      note = " "
+
     new_contact = Contact(first_name, last_name,email, note, cls.next_id)
     
     cls.list_of_contacts.append(new_contact)
@@ -35,6 +30,7 @@ class Contact:
   def all(cls):
     """This method should return all of the existing contacts"""
     return cls.list_of_contacts
+    
   @classmethod
   def find(cls, id):
     """ This method should accept an id as an argument
@@ -94,20 +90,20 @@ class Contact:
     """Returns the full (first and last) name of the contact"""
     return f'{self.first_name.capitalize()} {self.last_name.capitalize()}'
 
-  def delete(self):
+  def delete(index_to_delete):
     """This method should delete the contact
     HINT: Check the Array class docs for built-in methods that might be useful here
     """
-    Contact.list_of_contacts.remove(self)
+    Contact.list_of_contacts.pop(index_to_delete)
   # Feel free to add other methods here, if you need them.
 
-Contact.create()
-Contact.create()
-Contact.create()
+# Contact.create()
+# Contact.create()
+# Contact.create()
 
 
-Contact.list_of_contacts[0].update("email", "adam.cote66@gmail.com")
-print(Contact.all())
-Contact.list_of_contacts[2].delete()
-print(Contact.all())
-print(Contact.list_of_contacts[1].full_name())
+# Contact.list_of_contacts[0].update("email", "adam.cote66@gmail.com")
+# print(Contact.all())
+# Contact.list_of_contacts[2].delete()
+# print(Contact.all())
+# print(Contact.list_of_contacts[1].full_name())
